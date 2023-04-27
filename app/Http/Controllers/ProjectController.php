@@ -15,7 +15,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+
+        return view('projects.index', compact('projects'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -36,8 +38,19 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $new_project = Project::create($data);
+        $data = $request->all();
+        $project->title = $data['title'];
+        $project->client = $data['client'];
+        $project->description = $data['description'];
+        $project->url = $data['url'];
+        $project->slug = $data['slug'];
+
+        $project->save();
+
+        return to_route('projects.show', $new_project);
     }
+
 
     /**
      * Display the specified resource.
@@ -47,7 +60,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projects.show', compact('project'));
     }
 
     /**
@@ -58,7 +71,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -70,8 +83,18 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->all();
+        $project->title = $data['title'];
+        $project->client = $data['client'];
+        $project->description = $data['description'];
+        $project->url = $data['url'];
+        $project->slug = $data['slug'];
+
+        $project->save();
+
+        return to_route('projects.show', $project);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -81,6 +104,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return to_route('projects.index');
     }
 }
