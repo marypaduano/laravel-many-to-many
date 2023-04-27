@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Project extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
+    }
 }
+
+
