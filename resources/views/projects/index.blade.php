@@ -14,6 +14,7 @@
           <th scope="col">TITLE PROJECT</th>
           <th scope="col">CLIENT</th>
           <th scope="col">DESCRIPTION</th>
+          <th>TECHNOLOGY</th>
           <th scope="col">URL</th>
           <th scope="col">EDIT</th>
           <th scope="col">DELETE</th>
@@ -32,6 +33,13 @@
             </td>
             <td>
                 <p>{{ $project->description }}</p>
+            </td>
+            <td>
+              @forelse($project->technologies()->orderBy('name')->get() as $technology )
+                <span class="badge rounded-pill text-bg-primary">{{ $technology->name }}</span>
+              @empty
+                - 
+              @endforelse
             </td>
             <td>
                 <a href="{{ $project->url }}">{{ $project->url }}</a>
