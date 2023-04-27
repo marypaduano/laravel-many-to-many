@@ -2,10 +2,8 @@
 
 @section('content')
 
-<div class="container py-3 d-flex justify-content-end">
-  <button>
+<div class="container py-5 d-flex justify-content-end">
     <a class="btn btn-primary" href="{{ route('projects.create') }}">AGGIUNGI PROGETTO</a>
-  </button>
 </div>
 
 <div>
@@ -17,8 +15,8 @@
           <th scope="col">CLIENT</th>
           <th scope="col">DESCRIPTION</th>
           <th scope="col">URL</th>
-          <th scope="col">MODIFICA</th>
-          <th scope="col">ELIMINA</th>
+          <th scope="col">EDIT</th>
+          <th scope="col">DELETE</th>
         </tr>
       </thead>
       <tbody>
