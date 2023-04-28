@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -27,7 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $technologies = Technology::orderBy('name')->get();
+        return view('projects.create',compact('project', 'technologies'));
     }
 
     /**
@@ -71,7 +73,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $technologies = Technology::orderBy('name')->get();
+        return view('projects.edit', compact('project', 'technologies'));
     }
 
     /**
